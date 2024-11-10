@@ -1,5 +1,4 @@
 import speech_recognition as sr
-print('in stt.py')
 # Create a recognizer object
 r = sr.Recognizer()
 

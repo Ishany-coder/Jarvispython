@@ -1,9 +1,9 @@
-import stt
 import openai
 import os
 import json
-import webbrowser
 import apiKey
+from functions import SearchGoogle
+from functions import SearchYoutube
 
 # Set your API key
 openai.api_key = os.getenv("OPENAI_API_KEY", apiKey.apikey)
@@ -64,17 +64,8 @@ def call_chatgpt(prompt):
 
         # Handle function calls
         if function_name == 'search_google':
-            link = f'https://www.google.com/search?q={query["query"]}'
-            webbrowser.open(link)
-            return f'Searching on Google for "{query["query"]}"'
-        
+            SearchGoogle(query['query'])
         elif function_name == 'open_youtube':
-            link = f'https://www.youtube.com/results?search_query={query["query"]}'
-            webbrowser.open(link)
-            return f'Searching on YouTube for "{query["query"]}"'
-    
+            SearchYoutube(query['query'])
     # If no function call, return the assistant's response content
     return message.content
-
-result = call_chatgpt(stt.text)
-print(result)
