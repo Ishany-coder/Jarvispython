@@ -1,13 +1,12 @@
 import openai
 import os
 import json
-import apiKey
-from GPT.GPTfunctions import SearchGoogle
-from GPT.GPTfunctions import SearchYoutube
+import GPT.apiKey as apiKey
+from GPT.functions import Functions
 
 # Set your API key
 openai.api_key = os.getenv("OPENAI_API_KEY", apiKey.apikey)
-
+functions = Functions()
 # Define the function calling structure
 functions = [
     {
@@ -64,8 +63,8 @@ def call_chatgpt(prompt):
 
         # Handle function calls
         if function_name == 'search_google':
-            SearchGoogle(query['query'])
+            functions.SearchGoogle(query['query'])
         elif function_name == 'open_youtube':
-            SearchYoutube(query['query'])
+            functions.SearchYoutube(query['query'])
     # If no function call, return the assistant's response content
     return message.content

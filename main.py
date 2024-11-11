@@ -3,4 +3,4 @@ import sound.stt as stt
 from sound.tts import TTS
 
 result = call_chatgpt(stt.text)
-TTS(result)
+print(result)
