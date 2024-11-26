@@ -1,6 +1,10 @@
 from GPT.callGPT import call_chatgpt
-import sound.stt as stt
-from sound.tts import TTS
+from stt import stt
 
-result = call_chatgpt(stt.text)
-print(result)
+def main():
+    text = stt()
+    while text != 'exit':
+        result = call_chatgpt(text)
+        print(result)
+        text = stt()
+main()
