@@ -20,4 +20,5 @@ def stt():
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
             sys.exit()
-stt()
+        except KeyboardInterrupt:
+             print("Keyboard Interrupt goodbye")
